@@ -1,10 +1,10 @@
+import { BullModule } from '@nestjs/bullmq';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { AppProcessor } from './app.processor';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [BullModule.registerQueue({ name: 'test' })],
+  providers: [AppProcessor],
 })
 export class AppModule {}
